@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/etShowme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:inputType="textPersonName"
+            android:text="Show me"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <CheckedTextView
+            android:id="@+id/ctvWomen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+            android:checkMarkTint="#5E4A4A"
+            android:checked="false"
+            android:onClick="itemClicked"
+            android:text="Women"
+            android:textSize="14sp"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <CheckedTextView
+            android:id="@+id/ctvMen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+            android:checkMarkTint="#5E4A4A"
+            android:checked="false"
+            android:onClick="itemClicked"
+            android:text="Men"
+            android:textSize="14sp"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <CheckedTextView
+            android:id="@+id/ctvEveryone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+            android:checkMarkTint="#5E4A4A"
+            android:checked="false"
+            android:onClick="itemClicked"
+            android:text="Everyone"
+            android:textSize="14sp"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <Button
+            android:id="@+id/btnFilterSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/rounded_corners"
+            android:backgroundTint="#00FFFFFF"
+            android:text="Submit"
+            android:textColor="#000000" />
+
+
+
+
+
+</LinearLayout>
