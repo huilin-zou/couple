@@ -11,7 +11,9 @@ import android.widget.Toast;
 
 import com.codepath.couple.R;
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
 
 public class SignupActivity extends AppCompatActivity {
@@ -20,6 +22,8 @@ public class SignupActivity extends AppCompatActivity {
     EditText etSignUName;
     EditText etSignPassword;
     Button btnSignUpSubmit;
+    EditText etGender;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,20 +34,24 @@ public class SignupActivity extends AppCompatActivity {
         etSignUName = findViewById(R.id.etSignUName);
         etSignPassword = findViewById(R.id.etSignPassword);
         btnSignUpSubmit = findViewById(R.id.btnSignUpSubmit);
+        etGender=findViewById(R.id.etGender);
+
+
         btnSignUpSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 String password = etSignPassword.getText().toString();
                 String username = etSignUName.getText().toString();
+                String gender = etGender.getText().toString();
 
-                signup(password, username);
+                signup(password, username, gender);
             }
         });
 
     }
 
-    private void signup(String password, String username) {
+    private void signup(String password, String username, String gender) {
         // Make new user
         ParseUser user = new ParseUser();
 
@@ -51,6 +59,8 @@ public class SignupActivity extends AppCompatActivity {
         user.setUsername(username);
         user.setPassword(password);
         user.put("handle", username);
+        user.put("Gender", gender);
+
 
         Intent i = new Intent(this, LoginActivity.class);
         Toast.makeText(SignupActivity.this, "Sign up successs!", Toast.LENGTH_SHORT).show();
@@ -67,4 +77,6 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }

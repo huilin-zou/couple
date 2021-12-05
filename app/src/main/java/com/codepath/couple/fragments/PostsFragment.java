@@ -1,10 +1,14 @@
 package com.codepath.couple.fragments;
 
+import static com.codepath.couple.R.id.flContainer;
+
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -13,7 +17,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.codepath.couple.FilterActivity;
+import com.codepath.couple.LoginActivity;
 import com.codepath.couple.Post;
 import com.codepath.couple.PostsAdapter;
 import com.codepath.couple.R;
@@ -30,17 +37,18 @@ public class PostsFragment extends Fragment {
     protected PostsAdapter adapter;
     protected List<Post> allPosts;
     private SwipeRefreshLayout swipeContainer;
-
+    private Button btnFilter;
     public String createdAt;
 
 
-    public PostsFragment(){}
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
     }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,6 +57,7 @@ public class PostsFragment extends Fragment {
         //return inflater.inflate(R.layout.fragment_posts, container, false);
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_posts, container, false);
+
 
         // Lookup the swipe container view
         swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
@@ -72,6 +81,8 @@ public class PostsFragment extends Fragment {
         return view;
     }
 
+
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -83,8 +94,17 @@ public class PostsFragment extends Fragment {
         rvPosts.setAdapter(adapter);
         rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
         queryPost();
+
+        btnFilter =view.findViewById(R.id.btnFilter);
+        btnFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(@NonNull View view) {
+                Intent i = new Intent(getContext(), FilterActivity.class);
+                startActivity(i);
+
+            }
+        });
     }
-    //hvuyovbuibnp
     protected void queryPost() {
         ParseQuery<Post> query=ParseQuery.getQuery(Post.class);
         query.include(Post.KEY_USER);

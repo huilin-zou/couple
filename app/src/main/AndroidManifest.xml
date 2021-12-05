@@ -43,6 +43,8 @@
             android:name="com.codepath.couple.SignupActivity"
             android:exported="true" />
 
+    <activity android:name="com.codepath.couple.FilterActivity"
+        android:exported="true" />
 
 
 
