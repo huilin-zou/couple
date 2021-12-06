@@ -159,8 +159,10 @@ public class ComposeFragment extends Fragment {
 
 
     }
-    //niuboib
     private void savepost(String description, ParseUser currentUser, File photoFile) {
+
+
+
         Post post=new Post();
         post.setDescription(description);
         post.setImage(new ParseFile(photoFile));
@@ -169,7 +171,7 @@ public class ComposeFragment extends Fragment {
             @Override
             public void done(ParseException e) {
                 if(e!=null){
-                    Log.e(TAG,"Erroe while saving",e);
+                    Log.e(TAG,"Error while saving",e);
                     Toast.makeText(getContext(), "Error while saving", Toast.LENGTH_SHORT).show();
                 }
                 Log.i(TAG,"Post save was successful");

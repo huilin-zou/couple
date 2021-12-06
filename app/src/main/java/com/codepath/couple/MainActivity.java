@@ -17,8 +17,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String TAG ="MainActivity";
-    final FragmentManager fragmentManager=getSupportFragmentManager();
+    public static final String TAG = "MainActivity";
+    final FragmentManager fragmentManager = getSupportFragmentManager();
     private BottomNavigationView bottomNavigationView;
 
     @Override
@@ -27,27 +27,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
-        bottomNavigationView=findViewById(R.id.bottomNavigation);
+        bottomNavigationView = findViewById(R.id.bottomNavigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 Fragment fragment;
                 switch (menuItem.getItemId()) {
                     case R.id.action_home:
-                        fragment=new PostsFragment();
+                        fragment = new PostsFragment();
                         break;
 
                     case R.id.action_compose:
-                        fragment=new ComposeFragment();
+                        fragment = new ComposeFragment();
                         break;
 
                     case R.id.action_profile:
                     default:
-                        fragment=new ProfileFragment();
+                        fragment = new ProfileFragment();
                         break;
                 }
-                fragmentManager.beginTransaction().replace(flContainer,fragment).commit();
+                fragmentManager.beginTransaction().replace(flContainer, fragment).commit();
                 return true;
             }
 
@@ -55,9 +54,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.action_home);
 
 
-
     }
-
 
 
 }

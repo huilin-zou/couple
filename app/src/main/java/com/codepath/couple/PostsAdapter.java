@@ -20,21 +20,21 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
     private Context context;
     private List<Post> posts;
 
-    public PostsAdapter(Context context, List<Post>posts) {
+    public PostsAdapter(Context context, List<Post> posts) {
         this.context = context;
-        this.posts=posts;
+        this.posts = posts;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(context).inflate(R.layout.item_post,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_post, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Post post=posts.get(position);
+        Post post = posts.get(position);
         holder.bind(post);
 
     }
@@ -44,34 +44,36 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         return posts.size();
     }
 
-    public void clear(){
+    public void clear() {
         posts.clear();
         notifyDataSetChanged();
 
     }
 
-    public void addAll(List<Post> postsList){
+    public void addAll(List<Post> postsList) {
         posts.addAll(postsList);
         notifyDataSetChanged();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder {
         private TextView tvUsername;
         private ImageView ivImage;
         private TextView tvCaption;
 
-        public ViewHolder(@NonNull View itemView){
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvUsername=itemView.findViewById(R.id.tvUsername);
-            ivImage=itemView.findViewById(R.id.ivImage);
-            tvCaption=itemView.findViewById(R.id.tvCaption);
+            tvUsername = itemView.findViewById(R.id.tvUsername);
+            ivImage = itemView.findViewById(R.id.ivImage);
+            tvCaption = itemView.findViewById(R.id.tvCaption);
         }
-        public void bind(Post post){
+
+        public void bind(Post post) {
             tvCaption.setText(post.getDescription());
             tvUsername.setText(post.getUser().getUsername());
-            ParseFile image=post.getImage();
-            if(image!=null){
-                Glide.with(context).load(image.getUrl()).into(ivImage);}
+            ParseFile image = post.getImage();
+            if (image != null) {
+                Glide.with(context).load(image.getUrl()).into(ivImage);
+            }
 
         }
 

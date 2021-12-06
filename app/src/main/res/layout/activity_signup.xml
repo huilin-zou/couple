@@ -40,6 +40,16 @@
         android:layout_marginTop="20dp"
         android:hint="I identify as: woman/man/non-binary"
         android:minHeight="48dp" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/etAge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Age(in years)"
+        android:minHeight="48dp" />
+
+
     <Button
         android:id="@+id/btnSignUpSubmit"
         android:layout_width="match_parent"

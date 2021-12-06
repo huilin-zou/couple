@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.codepath.couple.fragments.PostsFragment">
+
     <Button
         android:id="@+id/btnFilter"
         android:layout_width="48dp"
