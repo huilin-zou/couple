@@ -75,14 +75,15 @@
         tools:ignore="TouchTargetSizeCheck" />
 
 
-    <EditText
-        android:id="@+id/etFilterAge"
+    <org.florescu.android.rangeseekbar.RangeSeekBar
+        android:id="@+id/rangeSeekBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Age here"
-        android:inputType="textPersonName"
-        tools:ignore="TouchTargetSizeCheck" />
+
+        app:valuesAboveThumbs="false"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+
 
     <Button
         android:id="@+id/btnFilterSubmit"

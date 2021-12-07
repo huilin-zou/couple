@@ -24,6 +24,8 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import org.florescu.android.rangeseekbar.RangeSeekBar;
+
 import java.util.List;
 
 
@@ -37,6 +39,7 @@ public class FilterActivity extends AppCompatActivity {
     private CheckedTextView ctvEveryone;
     private Button btnFilterSubmit;
     private TextView etShowme;
+    RangeSeekBar rangeSeekBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,25 @@ public class FilterActivity extends AppCompatActivity {
         ctvMen = findViewById(R.id.ctvMen);
         etShowme = findViewById(R.id.etShowme);
         ctvEveryone = findViewById(R.id.ctvEveryone);
+        rangeSeekBar = (RangeSeekBar) findViewById(R.id.rangeSeekBar);
+
+        rangeSeekBar.setRangeValues(18, 100);
+
+
+        rangeSeekBar.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener() {
+            @Override
+            public void onRangeSeekBarValuesChanged(RangeSeekBar bar, Object minValue, Object maxValue) {
+                Number min_value = bar.getSelectedMinValue();
+                Number max_value = bar.getSelectedMaxValue();
+
+                int min = (int) min_value;
+                int max = (int) max_value;
+
+                Toast.makeText(getApplicationContext(), "Min=" + min + "\n" + "Max=" + max, Toast.LENGTH_SHORT).show();
+            }
+
+
+        });
 
         btnFilterSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,7 +77,14 @@ public class FilterActivity extends AppCompatActivity {
                 //queryPost();
                 //goMainActivity();
                 Intent i = new Intent(FilterActivity.this, MainActivity.class);
-                i.putExtra("gender", getGender());
+                Bundle bundle = new Bundle();
+
+                bundle.putString("gender", getGender());
+                bundle.putInt("min_age", rangeSeekBar.getSelectedMinValue().intValue());
+                bundle.putInt("max_age", rangeSeekBar.getSelectedMaxValue().intValue());
+                // i.putExtra("gender", getGender());
+                i.putExtras(bundle);
+
                 setResult(RESULT_OK, i);
                 finish();
             }
@@ -66,7 +95,6 @@ public class FilterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ctvWomen.toggle();
                 if (ctvWomen.isChecked()) {
-                    //   choice=1;
                     Toast.makeText(FilterActivity.this, "Checked Women", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -102,4 +130,7 @@ public class FilterActivity extends AppCompatActivity {
         }
         return "everyone";
     }
+
+
+
 }
