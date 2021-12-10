@@ -1,7 +1,11 @@
 package com.codepath.couple.fragments;
 
+import static android.content.Intent.getIntent;
+import static com.codepath.couple.R.id.flContainer;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResult;
@@ -11,6 +15,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -20,8 +25,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckedTextView;
 
 import com.codepath.couple.FilterActivity;
+import com.codepath.couple.LoginActivity;
 import com.codepath.couple.Post;
 import com.codepath.couple.PostsAdapter;
 import com.codepath.couple.R;
@@ -42,9 +49,9 @@ public class PostsFragment extends Fragment {
     private Button btnFilter;
     public String createdAt;
     ActivityResultLauncher<Intent> getFilter;
-    public String gender = "everyone";
-    public int min_age=18;
-    public int max_age=100;
+    public String x = "everyone";
+    public Integer minAge = 18;
+    public Integer maxAge = 100;
 
 
     @Override
@@ -58,12 +65,10 @@ public class PostsFragment extends Fragment {
                     public void onActivityResult(ActivityResult result) {
                         if (Activity.RESULT_OK == result.getResultCode()) {
                             Intent data = result.getData();
+                            x = data.getStringExtra("gender");
+                            minAge = data.getIntExtra("minAge", 18);
+                            maxAge = data.getIntExtra("maxAge", 100);
 
-                            gender = data.getStringExtra("gender");
-                            if(gender == null)
-                                gender = "everyone";
-                            min_age=data.getIntExtra("min_age", 18);
-                            max_age=data.getIntExtra("max_age", 100);
                             queryPost();
                         }
                     }
@@ -130,41 +135,34 @@ public class PostsFragment extends Fragment {
         });
 
     }
+
+
     protected void queryPost() {
 
         ParseUser user = ParseUser.getCurrentUser();
 
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
-        /*
-        try {
-            user.fetch();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        int y = user.getInt("Age");*/
         query.include(Post.KEY_USER);
-      //  query.include("user.Age");
         query.setLimit(20);
-        if (!(gender.equals("everyone")))
-            query.whereEqualTo("gender", gender);
 
-
-        query.whereLessThanOrEqualTo("age",max_age);
-        query.whereGreaterThanOrEqualTo("age",min_age);
+        //gender filter
+        if (!(x.equals("everyone")))
+            query.whereEqualTo("gender", x);
 
         query.addDescendingOrder(Post.KEY_CREATED_KEY);
+
+        //age filter. doesn't load any posts
+        //query.whereLessThanOrEqualTo("age",maxAge);
+        //query.whereGreaterThanOrEqualTo("Age",minAge);
         query.findInBackground(new FindCallback<Post>() {
             @Override
             public void done(List<Post> posts, ParseException e) {
                 if (e != null) {
                     Log.e(TAG, "Issue with getting posts", e);
-
                     return;
                 }
                 swipeContainer.setRefreshing(false);
                 for (Post post : posts) {
-                   // if(post.getUser().getInt("Age") >= min_age)
-                   // allPosts.add(post);
                     Log.i(TAG, "Post: " + post.getDescription() + " , username: " + post.getUser().getUsername());
                 }
                 allPosts.clear();

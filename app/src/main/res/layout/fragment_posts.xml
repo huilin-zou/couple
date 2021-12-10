@@ -16,6 +16,7 @@
         app:icon="@drawable/filter"
         app:iconGravity="textStart"
         app:iconPadding="0dp"
+        app:iconTint="@color/white"
         tools:ignore="SpeakableTextPresentCheck" />
 
 

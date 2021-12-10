@@ -1,6 +1,7 @@
 package com.codepath.couple;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -39,7 +40,10 @@ public class FilterActivity extends AppCompatActivity {
     private CheckedTextView ctvEveryone;
     private Button btnFilterSubmit;
     private TextView etShowme;
+    private TextView etAgeFilter;
     RangeSeekBar rangeSeekBar;
+    private Integer minAge;
+    private Integer maxAge;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +54,12 @@ public class FilterActivity extends AppCompatActivity {
         ctvWomen = findViewById(R.id.ctvWomen);
         ctvMen = findViewById(R.id.ctvMen);
         etShowme = findViewById(R.id.etShowme);
+        etShowme.setPaintFlags(etShowme.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        etAgeFilter = findViewById(R.id.etAgeFilter);
+        etAgeFilter.setPaintFlags(etAgeFilter.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
         ctvEveryone = findViewById(R.id.ctvEveryone);
         rangeSeekBar = (RangeSeekBar) findViewById(R.id.rangeSeekBar);
-
         rangeSeekBar.setRangeValues(18, 100);
 
 
@@ -61,9 +68,11 @@ public class FilterActivity extends AppCompatActivity {
             public void onRangeSeekBarValuesChanged(RangeSeekBar bar, Object minValue, Object maxValue) {
                 Number min_value = bar.getSelectedMinValue();
                 Number max_value = bar.getSelectedMaxValue();
-
                 int min = (int) min_value;
                 int max = (int) max_value;
+
+                setMinAge(min);
+                setMaxAge(max);
 
                 Toast.makeText(getApplicationContext(), "Min=" + min + "\n" + "Max=" + max, Toast.LENGTH_SHORT).show();
             }
@@ -76,15 +85,14 @@ public class FilterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //queryPost();
                 //goMainActivity();
+
+                //int min=18;
+
+
                 Intent i = new Intent(FilterActivity.this, MainActivity.class);
-                Bundle bundle = new Bundle();
-
-                bundle.putString("gender", getGender());
-                bundle.putInt("min_age", rangeSeekBar.getSelectedMinValue().intValue());
-                bundle.putInt("max_age", rangeSeekBar.getSelectedMaxValue().intValue());
-                // i.putExtra("gender", getGender());
-                i.putExtras(bundle);
-
+                i.putExtra("gender", getGender());
+                i.putExtra("minAge", getMinAge());
+                i.putExtra("maxAge", getMaxAge());
                 setResult(RESULT_OK, i);
                 finish();
             }
@@ -95,6 +103,7 @@ public class FilterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ctvWomen.toggle();
                 if (ctvWomen.isChecked()) {
+                    //   choice=1;
                     Toast.makeText(FilterActivity.this, "Checked Women", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -121,6 +130,27 @@ public class FilterActivity extends AppCompatActivity {
         });
     }
 
+
+    private void setMinAge(int a) {
+        minAge = a;
+
+    }
+
+
+    private void setMaxAge(int a) {
+        maxAge = a;
+
+    }
+
+
+    private Integer getMinAge() {
+        return minAge;
+    }
+
+    private Integer getMaxAge() {
+        return maxAge;
+    }
+
     public String getGender() {
         if (ctvWomen.isChecked()) {
             return "woman";
@@ -129,8 +159,6 @@ public class FilterActivity extends AppCompatActivity {
             return "man";
         }
         return "everyone";
+
     }
-
-
-
 }

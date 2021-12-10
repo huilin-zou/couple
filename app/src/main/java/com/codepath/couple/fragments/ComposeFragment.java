@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.codepath.couple.LoginActivity;
 import com.codepath.couple.Post;
 import com.codepath.couple.R;
+import com.codepath.couple.WelcomePageActivity;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
@@ -75,7 +76,6 @@ public class ComposeFragment extends Fragment {
             }
         });
 
-        //queryPost();
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -98,7 +98,7 @@ public class ComposeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ParseUser.logOut();
-                Intent i = new Intent(getContext(), LoginActivity.class);
+                Intent i = new Intent(getContext(), WelcomePageActivity.class);
                 startActivity(i);
             }
         });

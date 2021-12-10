@@ -5,6 +5,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <queries>
 
         <!-- Camera -->
@@ -23,6 +24,7 @@
         android:name="com.codepath.couple.ParseApplication"
         android:usesCleartextTraffic="true"
         android:supportsRtl="true"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:theme="@style/Theme.couple">
 
         <provider
@@ -33,21 +35,23 @@
             tools:replace="android:authorities">
 
 
-
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/fileprovider"
-                tools:replace="android:resource"/>
+                tools:replace="android:resource" />
         </provider>
+
+        <activity
+            android:name=".WelcomePageActivity"
+            android:exported="true" />
 
         <activity
             android:name="com.codepath.couple.SignupActivity"
             android:exported="true" />
 
-    <activity android:name="com.codepath.couple.FilterActivity"
-        android:exported="true" />
-
-
+        <activity
+            android:name="com.codepath.couple.FilterActivity"
+            android:exported="true" />
 
 
         <activity
