@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginTop="20dp"
-            app:srcCompat="@mipmap/ic_launcher" />
+            app:srcCompat="@mipmap/logo" />
 
         <EditText
             android:id="@+id/etUsername"
@@ -50,7 +50,7 @@
             android:layout_weight="1"
             android:background="@drawable/rounded_corners"
             android:backgroundTint="#009C27B0"
-            android:text="Submit"
+            android:text="Log in"
             android:textColor="#150101" />
 
 

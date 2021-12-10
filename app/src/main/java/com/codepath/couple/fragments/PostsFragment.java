@@ -45,6 +45,7 @@ public class PostsFragment extends Fragment {
     private RecyclerView rvPosts;
     protected PostsAdapter adapter;
     protected List<Post> allPosts;
+    protected List<Post> filterpost;
     private SwipeRefreshLayout swipeContainer;
     private Button btnFilter;
     public String createdAt;
@@ -69,7 +70,8 @@ public class PostsFragment extends Fragment {
                             minAge = data.getIntExtra("minAge", 18);
                             maxAge = data.getIntExtra("maxAge", 100);
 
-                            queryPost();
+                            //queryPost();
+                            queryPost2();
                         }
                     }
                 }
@@ -152,8 +154,11 @@ public class PostsFragment extends Fragment {
         query.addDescendingOrder(Post.KEY_CREATED_KEY);
 
         //age filter. doesn't load any posts
-        //query.whereLessThanOrEqualTo("age",maxAge);
-        //query.whereGreaterThanOrEqualTo("Age",minAge);
+
+        // query.whereLessThanOrEqualTo("age",maxAge);
+        //query.whereGreaterThanOrEqualTo("age",minAge);
+
+
         query.findInBackground(new FindCallback<Post>() {
             @Override
             public void done(List<Post> posts, ParseException e) {
@@ -164,9 +169,59 @@ public class PostsFragment extends Fragment {
                 swipeContainer.setRefreshing(false);
                 for (Post post : posts) {
                     Log.i(TAG, "Post: " + post.getDescription() + " , username: " + post.getUser().getUsername());
+
+                }
+
+                for (Post post : posts) {
+
                 }
                 allPosts.clear();
                 allPosts.addAll(posts);
+                adapter.notifyDataSetChanged();
+
+            }
+        });
+    }
+
+    protected void queryPost2() {
+
+        ParseUser user = ParseUser.getCurrentUser();
+
+        ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
+        query.include(Post.KEY_USER);
+        query.setLimit(20);
+
+        //gender filter
+        if (!(x.equals("everyone")))
+            query.whereEqualTo("gender", x);
+
+        query.addDescendingOrder(Post.KEY_CREATED_KEY);
+
+        //age filter. doesn't load any posts
+
+        //query.whereLessThanOrEqualTo("age",maxAge);
+        //query.whereGreaterThanOrEqualTo("age",minAge);
+
+
+        query.findInBackground(new FindCallback<Post>() {
+
+            @Override
+            public void done(List<Post> posts, ParseException e) {
+                if (e != null) {
+                    Log.e(TAG, "Issue with getting posts", e);
+                    return;
+                }
+                swipeContainer.setRefreshing(false);
+                for (Post post : posts) {
+                    Log.i(TAG, "Post: " + post.getDescription() + " , username: " + post.getUser().getUsername());
+
+                }
+
+                for (Post post : posts) {
+                    if (post.getAge() >= minAge && post.getAge() <= maxAge)
+                        allPosts.addAll();
+                }
+
                 adapter.notifyDataSetChanged();
 
             }

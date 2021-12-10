@@ -13,6 +13,7 @@ public class ParseApplication extends Application {
 
         ParseObject.registerSubclass(Post.class);
         ParseObject.registerSubclass(Like.class);
+        ParseObject.registerSubclass(Message.class);
 
 
         Parse.initialize(new Parse.Configuration.Builder(this)

@@ -83,11 +83,6 @@ public class FilterActivity extends AppCompatActivity {
         btnFilterSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //queryPost();
-                //goMainActivity();
-
-                //int min=18;
-
 
                 Intent i = new Intent(FilterActivity.this, MainActivity.class);
                 i.putExtra("gender", getGender());
