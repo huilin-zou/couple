@@ -217,10 +217,10 @@ public class PostsFragment extends Fragment {
 
                 }
 
-                for (Post post : posts) {
+               /* for (Post post : posts) {
                     if (post.getAge() >= minAge && post.getAge() <= maxAge)
-                        allPosts.addAll();
-                }
+                        //allPosts.addAll();
+                }*/
 
                 adapter.notifyDataSetChanged();
 

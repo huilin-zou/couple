@@ -54,10 +54,7 @@ public class FilterActivity extends AppCompatActivity {
         ctvWomen = findViewById(R.id.ctvWomen);
         ctvMen = findViewById(R.id.ctvMen);
         etShowme = findViewById(R.id.etShowme);
-        etShowme.setPaintFlags(etShowme.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         etAgeFilter = findViewById(R.id.etAgeFilter);
-        etAgeFilter.setPaintFlags(etAgeFilter.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-
         ctvEveryone = findViewById(R.id.ctvEveryone);
         rangeSeekBar = (RangeSeekBar) findViewById(R.id.rangeSeekBar);
         rangeSeekBar.setRangeValues(18, 100);

@@ -1,5 +1,6 @@
 package com.codepath.couple;
 
+import static com.codepath.couple.FilterActivity.TAG;
 import static com.codepath.couple.R.id.flContainer;
 
 import androidx.annotation.NonNull;
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.codepath.couple.fragments.ComposeFragment;
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
     final FragmentManager fragmentManager = getSupportFragmentManager();
     private BottomNavigationView bottomNavigationView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
