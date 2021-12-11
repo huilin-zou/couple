@@ -9,7 +9,7 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/action_compose"
-        android:icon="@drawable/ic_match"
+        android:icon="@drawable/match"
         android:title="Compose"
         app:showAsAction="always" />
     <item
