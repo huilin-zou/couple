@@ -11,9 +11,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.codepath.couple.R;
+import com.parse.FindCallback;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
+
+import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -45,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
                 loginUser(username, password);
             }
         });
-
+        queryUserImgUrl();
 
     }
 
@@ -78,6 +83,30 @@ public class LoginActivity extends AppCompatActivity {
     private void goSignUpActivity() {
         Intent i = new Intent(this, SignupActivity.class);
         startActivity(i);
+    }
+
+    private void queryUserImgUrl() {
+        ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
+        query.include(Post.KEY_USER);
+        query.whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser());
+        query.setLimit(1);
+        query.addDescendingOrder(Post.KEY_CREATED_KEY);
+        query.findInBackground(new FindCallback<Post>() {
+            @Override
+            public void done(List<Post> posts, ParseException e) {
+                if (e != null) {
+                    return;
+                }
+                for (Post post : posts) {
+
+                    ParseFile image = post.getImage();
+                    ProfileURLString.url = image.getUrl();
+                    Log.i(TAG, "Post: " + post.getDescription() + " , username: " + post.getUser().getUsername() + image.getUrl());
+                }
+
+            }
+
+        });
     }
 
 

@@ -8,7 +8,7 @@
         android:title="Home"
         app:showAsAction="always" />
     <item
-        android:id="@+id/action_compose"
+        android:id="@+id/action_matches"
         android:icon="@drawable/match"
         android:title="Compose"
         app:showAsAction="always" />

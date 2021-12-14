@@ -70,7 +70,6 @@ public class PostsFragment extends Fragment {
                             minAge = data.getIntExtra("minAge", 18);
                             maxAge = data.getIntExtra("maxAge", 100);
 
-                            //queryPost();
                             queryPost2();
                         }
                     }
@@ -100,7 +99,12 @@ public class PostsFragment extends Fragment {
                 // Your code to refresh the list here.
                 // Make sure you call swipeContainer.setRefreshing(false)
                 // once the network request has completed successfully.
-                queryPost();
+                try {
+                    queryPost();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                queryPost2();
             }
         });
 
@@ -124,7 +128,11 @@ public class PostsFragment extends Fragment {
 
         rvPosts.setAdapter(adapter);
         rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
-        queryPost();
+        try {
+            queryPost();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         btnFilter = view.findViewById(R.id.btnFilter);
         btnFilter.setOnClickListener(new View.OnClickListener() {
@@ -139,7 +147,7 @@ public class PostsFragment extends Fragment {
     }
 
 
-    protected void queryPost() {
+    protected void queryPost() throws ParseException {
 
         ParseUser user = ParseUser.getCurrentUser();
 
@@ -152,12 +160,6 @@ public class PostsFragment extends Fragment {
             query.whereEqualTo("gender", x);
 
         query.addDescendingOrder(Post.KEY_CREATED_KEY);
-
-        //age filter. doesn't load any posts
-
-        // query.whereLessThanOrEqualTo("age",maxAge);
-        //query.whereGreaterThanOrEqualTo("age",minAge);
-
 
         query.findInBackground(new FindCallback<Post>() {
             @Override
@@ -197,12 +199,6 @@ public class PostsFragment extends Fragment {
 
         query.addDescendingOrder(Post.KEY_CREATED_KEY);
 
-        //age filter. doesn't load any posts
-
-        //query.whereLessThanOrEqualTo("age",maxAge);
-        //query.whereGreaterThanOrEqualTo("age",minAge);
-
-
         query.findInBackground(new FindCallback<Post>() {
 
             @Override
@@ -216,11 +212,6 @@ public class PostsFragment extends Fragment {
                     Log.i(TAG, "Post: " + post.getDescription() + " , username: " + post.getUser().getUsername());
 
                 }
-
-               /* for (Post post : posts) {
-                    if (post.getAge() >= minAge && post.getAge() <= maxAge)
-                        //allPosts.addAll();
-                }*/
 
                 adapter.notifyDataSetChanged();
 

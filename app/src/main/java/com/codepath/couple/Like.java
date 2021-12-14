@@ -14,6 +14,8 @@ public class Like extends ParseObject {
     public static final String KEY_POSTER = "Poster";
     public static final String KEY_LIKER = "Liker";
     public static final String KEY_CREATED_KEY = "createdAt";
+    public static String KEY_STRING_LIKER = "LikerString";
+    public static String KEY_STRING_POSTER = "PosterString";
 
 
     public String getDescription() {
@@ -46,5 +48,21 @@ public class Like extends ParseObject {
 
     public void setLiker(ParseUser Liker) {
         put(KEY_LIKER, Liker);
+    }
+
+    public void setLikerString(String likerString) {
+        put(KEY_STRING_LIKER, likerString);
+    }
+
+    public void setPosterString(String posterString) {
+        put(KEY_STRING_POSTER, posterString);
+    }
+
+    public String getLikerString() {
+        return getString(KEY_STRING_LIKER);
+    }
+
+    public String getPosterString() {
+        return getString(KEY_STRING_POSTER);
     }
 }

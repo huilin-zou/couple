@@ -22,11 +22,11 @@ import com.parse.SignUpCallback;
 public class SignupActivity extends AppCompatActivity {
     public static final String TAG = "SignUpActivity";
 
-    EditText etSignUName;
-    EditText etSignPassword;
-    Button btnSignUpSubmit;
-    EditText etGender;
-    EditText etAge;
+    private EditText etSignUName;
+    private EditText etSignPassword;
+    private Button btnSignUpSubmit;
+    private EditText etGender;
+    private EditText etAge;
 
 
     @Override
