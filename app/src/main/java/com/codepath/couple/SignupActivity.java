@@ -26,7 +26,7 @@ public class SignupActivity extends AppCompatActivity {
     private EditText etSignPassword;
     private Button btnSignUpSubmit;
     private EditText etGender;
-    private EditText etAge;
+    //private EditText etAge;
 
 
     @Override
@@ -39,7 +39,7 @@ public class SignupActivity extends AppCompatActivity {
         etSignPassword = findViewById(R.id.etSignPassword);
         btnSignUpSubmit = findViewById(R.id.btnSignUpSubmit);
         etGender = findViewById(R.id.etGender);
-        etAge = findViewById(R.id.etAge);
+        //etAge = findViewById(R.id.etAge);
 
 
         btnSignUpSubmit.setOnClickListener(new View.OnClickListener() {
@@ -49,15 +49,15 @@ public class SignupActivity extends AppCompatActivity {
                 String password = etSignPassword.getText().toString();
                 String username = etSignUName.getText().toString();
                 String gender = etGender.getText().toString();
-                Integer age = Integer.valueOf(etAge.getText().toString());
+                //Integer age = Integer.valueOf(etAge.getText().toString());
 
-                signup(password, username, gender, age);
+                signup(password, username, gender);
             }
         });
 
     }
 
-    private void signup(String password, String username, String gender, Integer age) {
+    private void signup(String password, String username, String gender) {
         // Make new user
         ParseUser user = new ParseUser();
 
@@ -66,7 +66,7 @@ public class SignupActivity extends AppCompatActivity {
         user.setPassword(password);
         user.put("handle", username);
         user.put("Gender", gender);
-        user.put("Age", age);
+        //user.put("Age", age);
 
 
         Intent i = new Intent(this, LoginActivity.class);

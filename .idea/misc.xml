@@ -3,14 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/zouhu/AndroidStudioProjects/couple/app/src/main/res/drawable-anydpi/match.xml" value="0.3385416666666667" />
         <entry key="..\:/Users/zouhu/AndroidStudioProjects/couple/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3323076923076923" />
         <entry key="..\:/Users/zouhu/AndroidStudioProjects/couple/app/src/main/res/drawable/boarder.xml" value="0.3385416666666667" />
+        <entry key="..\:/Users/zouhu/AndroidStudioProjects/couple/app/src/main/res/drawable/border.xml" value="0.3385416666666667" />
         <entry key="..\:/Users/zouhu/AndroidStudioProjects/couple/app/src/main/res/drawable/circle.xml" value="0.3385416666666667" />
         <entry key="..\:/Users/zouhu/AndroidStudioProjects/couple/app/src/main/res/drawable/dislike.xml" value="0.1" />
+        <entry key="..\:/Users/zouhu/AndroidStudioProjects/couple/app/src/main/res/drawable/heart_filled.xml" value="0.3385416666666667" />
         <entry key="..\:/Users/zouhu/AndroidStudioProjects/couple/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3296296296296296" />
         <entry key="..\:/Users/zouhu/AndroidStudioProjects/couple/app/src/main/res/drawable/ic_match.xml" value="0.3296296296296296" />
         <entry key="..\:/Users/zouhu/AndroidStudioProjects/couple/app/src/main/res/drawable/image.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/zouhu/AndroidStudioProjects/couple/app/src/main/res/drawable/like.xml" value="0.1" />
+        <entry key="..\:/Users/zouhu/AndroidStudioProjects/couple/app/src/main/res/drawable/like_filled.xml" value="0.3385416666666667" />
         <entry key="..\:/Users/zouhu/AndroidStudioProjects/couple/app/src/main/res/drawable/logo.xml" value="0.3385416666666667" />
         <entry key="..\:/Users/zouhu/AndroidStudioProjects/couple/app/src/main/res/drawable/shadow.xml" value="0.3385416666666667" />
         <entry key="..\:/Users/zouhu/AndroidStudioProjects/couple/app/src/main/res/drawable/solid_color_shape.xml" value="0.3385416666666667" />

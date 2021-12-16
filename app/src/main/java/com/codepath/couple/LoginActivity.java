@@ -80,11 +80,6 @@ public class LoginActivity extends AppCompatActivity {
         finish();
     }
 
-    private void goSignUpActivity() {
-        Intent i = new Intent(this, SignupActivity.class);
-        startActivity(i);
-    }
-
     private void queryUserImgUrl() {
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         query.include(Post.KEY_USER);

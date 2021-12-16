@@ -41,6 +41,7 @@
         android:layout_width="31dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
+        android:hapticFeedbackEnabled="false"
         app:srcCompat="@drawable/like"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 

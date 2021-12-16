@@ -79,6 +79,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             btnLike.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                 //   btnLike.setImageResource(R.drawable.likefilled);
                     Toast.makeText(v.getContext(), "You Liked this post!", Toast.LENGTH_SHORT).show();
                     Log.i(TAG, "You Liked this post!");
                     ParseUser currentUser = ParseUser.getCurrentUser();

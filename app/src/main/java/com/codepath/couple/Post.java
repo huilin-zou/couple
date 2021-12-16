@@ -14,6 +14,8 @@ public class Post extends ParseObject {
     public static final String KEY_USER2 = "User2";
     public static final String KEY_CREATED_KEY = "createdAt";
     public static final String KEY_AGE = "age";
+    //int age;
+
 
     public String getDescription() {
         return getString(KEY_DESCRIPTION);
@@ -45,6 +47,14 @@ public class Post extends ParseObject {
 
     public void setUser2(ParseUser User2) {
         put(KEY_USER2, User2);
+    }
+
+    public void setAge(Integer age) {
+        put(KEY_AGE, age);
+    }
+
+    public Integer getAge() {
+        return getInt(KEY_AGE);
     }
 
 

@@ -138,6 +138,7 @@ public class ProfileFragment extends Fragment {
 
 
     private void queryUserImgUrl() {
+        //ParseUser user = ParseUser.getCurrentUser();
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         query.include(Post.KEY_USER);
         query.whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser());

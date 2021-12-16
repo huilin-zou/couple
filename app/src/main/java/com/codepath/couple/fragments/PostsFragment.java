@@ -46,7 +46,7 @@ public class PostsFragment extends Fragment {
     protected PostsAdapter adapter;
     protected List<Post> allPosts;
     protected List<Post> filterpost;
-    private SwipeRefreshLayout swipeContainer;
+    protected SwipeRefreshLayout swipeContainer;
     private Button btnFilter;
     public String createdAt;
     ActivityResultLauncher<Intent> getFilter;
